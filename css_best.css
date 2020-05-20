@@ -1,0 +1,389 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: sans-serif;
+}
+
+.all-container{
+    height: 100vh;
+    width: 100%;
+    min-height: 500px;
+    overflow: hidden;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    background: linear-gradient(#2fffaf, #002421);
+    position: relative;
+    height: 100%;
+    min-height: 500px;
+}
+
+.error-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-column: 1 / 2;
+    grid-row: 4 / 5;
+    font-size: 4vmin;
+    color: #ff0000;
+    text-align: center;
+    width: 100%;
+    background-color: #ddffff;
+    padding: 10px;
+    border: 5px solid #05a;
+    border-bottom: 5px solid #aff;
+    border-left: 5px solid #aff;
+    margin-right: 10px;
+    margin-top: 10px;
+    min-height: 50px;
+}
+
+.text-error{
+    font-weight: 600;
+}
+
+.error-container-active{
+    transform: translate(-50%, 0px);
+}
+
+
+.text{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.text p{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    background-color: #003355;
+    border: 3px solid #001e31;
+    padding: 20px;
+    border-radius: 40px;
+    color: #00aaff;
+    width: 80%;
+    min-height: 100px;
+    text-align: center;
+}
+
+.text-input{
+    margin: 20px;
+    padding: 7px;
+    border: 3px solid #0088aa;
+    background-color: #eeffff;
+    border-radius: 25px;
+    display: flex;
+    text-align: center;
+    font-size: 30px;
+    height: 50px;
+    width: 100px;
+}
+
+.text-input:focus{
+    outline: none;
+    border: 3px solid #003355;
+    background-color: #eeffff;
+}
+
+.motywy{
+    grid-column: 1 / -1;
+    grid-row: 3 / 4;
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    grid-gap: 20px;
+    margin: 10px;
+}
+
+.label-motywy{
+    width: 100%;
+    height: 100%;
+}
+
+.label-motywy input{
+    position: absolute;
+    width: 0;
+    height: 0;
+    opacity: 0;
+}
+
+.motywy-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 5rem;
+    height: 100%;
+    border-radius: 50px;
+    border: 2px solid #050505;
+    position: relative;
+}
+
+.motywy-box::before, .motywy-box-active::before{
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-image: url("img/icon2.png");
+    background-position: center;
+    background-size: 100%;
+    border-radius: 50%;
+    left: 50%;
+    top: 11%;
+    transform: translate(-50% ,-40%);
+    opacity: 0;
+    transition: opacity .4s ease, transform .4s ease;
+}
+
+
+.motywy-box-active::before{
+    transform: translate(-50%, 0);
+    opacity: 1;
+}
+
+.button-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-column: 2 / 3;
+    grid-row: 4 / 5;
+  
+}
+
+.start{
+    font-size: 4rem;
+    border: 10px solid #aff;
+    border-radius: 50px;
+    background-color: #05a;
+    color: #ffffff;
+    max-width: 700px;
+    padding: 20px 130px;
+}
+
+.button-unclick{
+    pointer-events: none;
+}
+
+
+@media(max-width: 1000px){
+
+    .text p{
+        font-size: 20px;
+        padding: 15px;
+    }
+
+    .motywy{
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(2, 1fr);
+        grid-gap: 10px;
+        margin: 5px;
+    }
+
+    .motywy-box{
+        font-size: 3.3rem;
+        border-radius: 40px;
+    }
+
+    .start{
+        font-size: 3.5rem;
+        border: 10px solid #aff;
+        border-radius: 50px;
+        max-width: 700px;
+        padding: 15px 40px;
+    }
+}
+
+@media(max-width: 500px){
+
+    .text p{
+        font-size: 14px;
+        padding: 10px;
+        border-radius: 30px;
+        min-height: 50px;
+        text-align: center;
+    }
+
+    .text-input{
+        font-size: 20px;
+        height: 50px;
+        width: 100px;
+        margin: 5px;
+    }
+
+    .motywy{
+        grid-gap: 5px;
+    }
+
+    .motywy-box{
+        font-size: 2.7rem;
+        border-radius: 30px;
+    }
+
+    .start{
+        width: 90%;
+        padding: 10px 0px;
+    }
+}
+
+@media(max-width: 350px){
+
+    .text p{
+        font-size: 11px;
+    }
+
+    .motywy-box{
+        font-size: 2rem;
+    }
+
+    .start{
+        font-size: 3rem;
+        border-radius: 50px;
+        padding: 8px 0;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.numberbox{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 200vh;
+    width: 100%;
+    transition: transform .5s ease;
+    background-color: #999999;
+    position: relative;
+}
+
+.numberbox-start{
+    transform: translateY(-100vh);
+    transition: transform .5s ease;
+}
+
+.button-x{
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 80px;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    border: 0;
+}
+
+.button-box{
+    width: 50px;
+    height: 50px;
+    position: relative;
+}
+
+.button-box::before, .button-box::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 3px;
+    width: 100%;
+    background-color: #555555;
+} 
+
+.button-box::before{
+    transform:  translateY(23px) rotate(45deg);
+}
+
+.button-box::after{
+    transform:  translateY(23px) rotate(-45deg);
+}
+
+.box2{
+    height: 100vh;
+    width: 100%;
+}
+
+.liczba{
+    font-size: 80vmin;
+}
+
+.liczba-333{
+    font-size: 60vmin;
+}
+
+.liczba-4444{
+    font-size: 45vmin;
+}
+
+.liczba-55555{
+    font-size: 35vmin;
+}
+
+.color1{
+    background-color: #000;
+    color: #fff;
+}
+
+.color2{
+    background-color: #fff;
+    color: #000;
+}
+
+.color3{
+    background-color: #a00;
+    color: #5ff;
+}
+
+.color4{
+    background-color: #5f5;
+    color: #a0a;
+}
+
+.color5{
+    background-color: #00a;
+    color: #ff5;
+}
+
+.color6{
+    background-color: #5ff;
+    color: #a00;
+}
+
+.color7{
+    background-color: #a0a;
+    color: #5f5;
+}
+
+.color8{
+    background-color: #ff5;
+    color: #00a;
+}
+
+
+
+
