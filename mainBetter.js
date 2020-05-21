@@ -1,24 +1,4 @@
 
-const colorInput = document.querySelectorAll(".motywy-box");
-
-colorInput.forEach((element) => {
-    element.addEventListener("click", (e) => {
-        e.target.classList.toggle("motywy-box-active");
-} )
-});
-
-// const colorImage = document.querySelectorAll(".motywy-box");
-
-// const colorInput = document.querySelectorAll(".color-input");
-
-
-// colorInput.forEach((element) => {
-//     element.addEventListener("change", (e) => {
-//          e.target.classList.toggle("motywy-box-active");
-//     } )
-
-// });
-
 const go = () => {
     const  minNumber = parseInt(document.querySelector("#min-number").value);
     const  maxNumber = parseInt(document.querySelector("#max-number").value);
@@ -36,40 +16,20 @@ const go = () => {
 
     const textError = document.getElementById("text-error");
 
-    textError.classList.remove("text-error-active");
 
     if (!minNumber && minNumber != 0 || !maxNumber && maxNumber != 0 || !timeWork && timeWork != 0 || !timeOnScreen && timeOnScreen != 0 ) {
-        console.log("Nie wszystkie pola są wypełnione")
         textError.innerHTML = ("Wszystkie pola muszą być wypełnione");
     } else if (timeWork <= 0 || timeOnScreen <= 0){
-        console.log("Czas trwania programu oraz czas wyświetlania jednej liczby nie mogą być zerowe ani ujemne")
         textError.innerHTML = ("Czas trwania programu ani czas wyświetlania jednej liczby nie mogą być zerowe lub ujemne");
     }else if (minNumber > maxNumber){
-        console.log("Najmniejsza liczba nie może być mniejsza od największej")
         textError.innerHTML = ("Min liczba nie może być mniejsza od Max liczby");
     }else if (minNumber > 99999 || maxNumber > 99999){
-        console.log("Najmniejsza liczba nie może być mniejsza od największej")
         textError.innerHTML = ("Min liczba ani max liczba nie może mieć więcej niż 5 cyfr");
     }else if (!colorMotyw1 && !colorMotyw2 && !colorMotyw3 && !colorMotyw4 && !colorMotyw5 && !colorMotyw6 && !colorMotyw6 && !colorMotyw7 && !colorMotyw8 )  {
-        console.log("Musisz zaznaczyć przynajmniej jeden motyw")
         textError.innerHTML = ("Musisz zaznaczyć przynajmniej jeden motyw");
     }else {
         textError.innerHTML = ("");
-        console.log(`
-        Najmniejszy numer to: ${minNumber}
-        Największy numer to: ${maxNumber}
-        Czas trwania programu to: ${timeWork}
-        Czas wyświetlania jednej liczby: ${timeOnScreen}
         
-        color 1: ${colorMotyw1}
-        color 2: ${colorMotyw2}
-        color 3: ${colorMotyw3}
-        color 4: ${colorMotyw4}
-        color 5: ${colorMotyw5}
-        color 6: ${colorMotyw6}
-        color 7: ${colorMotyw7}
-        color 8: ${colorMotyw8}
-        `);
         startProgram(minNumber, maxNumber, timeWork, timeOnScreen, colorMotyw1, colorMotyw2, colorMotyw3, colorMotyw4, colorMotyw5, colorMotyw6, colorMotyw7, colorMotyw8);
     }
 }

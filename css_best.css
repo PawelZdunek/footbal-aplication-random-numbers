@@ -49,11 +49,6 @@ body{
     font-weight: 600;
 }
 
-.error-container-active{
-    transform: translate(-50%, 0px);
-}
-
-
 .text{
     display: flex;
     flex-direction: column;
@@ -74,6 +69,9 @@ body{
     width: 80%;
     min-height: 100px;
     text-align: center;
+    -webkit-box-shadow: 0px 0px 15px -10px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 15px -10px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 15px -3px rgba(0,0,0,0.75);
 }
 
 .text-input{
@@ -87,6 +85,9 @@ body{
     font-size: 30px;
     height: 50px;
     width: 100px;
+    -webkit-box-shadow: 0px 0px 15px -10px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 15px -10px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 15px -3px rgba(0,0,0,0.75);
 }
 
 .text-input:focus{
@@ -114,7 +115,11 @@ body{
     position: absolute;
     width: 0;
     height: 0;
-    opacity: 0;
+}
+
+.label-motywy input:checked ~ .motywy-box::before{
+    transform: translate(-50%, 0);
+    opacity: 1;
 }
 
 .motywy-box{
@@ -125,7 +130,9 @@ body{
     font-size: 5rem;
     height: 100%;
     border-radius: 50px;
-    border: 2px solid #050505;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
     position: relative;
 }
 
@@ -145,12 +152,6 @@ body{
     transition: opacity .4s ease, transform .4s ease;
 }
 
-
-.motywy-box-active::before{
-    transform: translate(-50%, 0);
-    opacity: 1;
-}
-
 .button-container{
     display: flex;
     align-items: center;
@@ -168,6 +169,9 @@ body{
     color: #ffffff;
     max-width: 700px;
     padding: 20px 130px;
+    -webkit-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
 }
 
 .button-unclick{
