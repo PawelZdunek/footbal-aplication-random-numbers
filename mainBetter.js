@@ -1,5 +1,5 @@
 
-const go = () => {
+const errorDetection = () => {
     const  minNumber = parseInt(document.querySelector("#min-number").value);
     const  maxNumber = parseInt(document.querySelector("#max-number").value);
     const  timeWork = Number(document.querySelector("#czas-trwania").value);
@@ -23,7 +23,7 @@ const go = () => {
         textError.innerHTML = ("Czas trwania programu ani czas wyświetlania jednej liczby nie mogą być zerowe lub ujemne");
     }else if (minNumber > maxNumber){
         textError.innerHTML = ("Min liczba nie może być mniejsza od Max liczby");
-    }else if (minNumber > 99999 || maxNumber > 99999){
+    }else if (minNumber > 99999 || maxNumber > 99999 || minNumber < -99999 || maxNumber < -99999){
         textError.innerHTML = ("Min liczba ani max liczba nie może mieć więcej niż 5 cyfr");
     }else if (!colorMotyw1 && !colorMotyw2 && !colorMotyw3 && !colorMotyw4 && !colorMotyw5 && !colorMotyw6 && !colorMotyw6 && !colorMotyw7 && !colorMotyw8 )  {
         textError.innerHTML = ("Musisz zaznaczyć przynajmniej jeden motyw");
@@ -34,9 +34,9 @@ const go = () => {
     }
 }
 
-const button = document.querySelector("#start");
+const buttonStart = document.querySelector("#start");
 
-button.addEventListener('click', go)
+buttonStart.addEventListener('click', errorDetection)
 
 
 function getRandomNumber(min, max) {
@@ -51,27 +51,23 @@ const startTime = date.getTime();
 
 const startProgram = (minNumber, maxNumber, timeWork, timeOnScreen, colorMotyw1, colorMotyw2, colorMotyw3, colorMotyw4, colorMotyw5, colorMotyw6, colorMotyw7, colorMotyw8) => {
 
-    button.classList.add("button-unclick")
+    buttonStart.classList.add("button-unclick")
 
     const changingNumbers = document.querySelector("#box");
     
     changingNumbers.classList.add("numberbox-start");
 
-    const colorTable = [];
+    const initialColorTable = [colorMotyw1, colorMotyw2, colorMotyw3, colorMotyw4, colorMotyw5, colorMotyw6, colorMotyw7, colorMotyw8];
 
-    colorTable.push(colorMotyw1, colorMotyw2, colorMotyw3, colorMotyw4, colorMotyw5, colorMotyw6, colorMotyw7, colorMotyw8)
+    const finalColorTableNumbers = [];
 
-    const colorTableNumbers = [];
-
-    colorTable.forEach((element, i) => {
+    initialColorTable.forEach((element, i) => {
         if (element){
-            colorTableNumbers.push(i + 1)
+            finalColorTableNumbers.push(i + 1)
         }
     })
-
-    console.log(colorTableNumbers)
     
-    const losowanie = () => {
+    const theDraw = () => {
 
         const placeWithNumber = document.getElementById("liczba")
 
@@ -89,9 +85,9 @@ const startProgram = (minNumber, maxNumber, timeWork, timeOnScreen, colorMotyw1,
 
         placeWithNumber.innerHTML = resultOfTheDraw;
 
-        let randomNumber = getRandomNumber(1, colorTableNumbers.length);
+        let randomNumber = getRandomNumber(1, finalColorTableNumbers.length);
 
-        let randomColorNumber = colorTableNumbers[randomNumber - 1]
+        let randomColorNumber = finalColorTableNumbers[randomNumber - 1]
 
         document.getElementById("box").classList.remove(`color1`, `color2`, `color3`, `color4`, `color5`, `color6`, `color7`, `color8`)
     
@@ -99,9 +95,9 @@ const startProgram = (minNumber, maxNumber, timeWork, timeOnScreen, colorMotyw1,
 
     }
 
-    losowanie();
+    theDraw();
 
-    let interval = setInterval(losowanie, timeOnScreen * 1000);
+    let interval = setInterval(theDraw, timeOnScreen * 1000);
 
 
     const stopInterval = () => {
@@ -109,7 +105,7 @@ const startProgram = (minNumber, maxNumber, timeWork, timeOnScreen, colorMotyw1,
 
         changingNumbers.classList.remove("numberbox-start");
 
-        button.classList.remove("button-unclick")
+        buttonStart.classList.remove("button-unclick")
 
         clearTimeout(timeStopInterval)
     };
