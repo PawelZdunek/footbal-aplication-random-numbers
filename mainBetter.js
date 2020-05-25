@@ -46,9 +46,6 @@ function getRandomNumber(min, max) {
 }
 
 
-const date = new Date();
-const startTime = date.getTime();
-
 const startProgram = (minNumber, maxNumber, timeWork, timeOnScreen, colorMotyw1, colorMotyw2, colorMotyw3, colorMotyw4, colorMotyw5, colorMotyw6, colorMotyw7, colorMotyw8) => {
 
     buttonStart.classList.add("button-unclick")
