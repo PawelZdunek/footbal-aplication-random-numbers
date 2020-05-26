@@ -72,12 +72,14 @@ const startProgram = (minNumber, maxNumber, timeWork, timeOnScreen, colorMotyw1,
 
         placeWithNumber.classList.remove('liczba-333', 'liczba-4444', 'liczba-55555')
 
-        if (resultOfTheDraw > 9999){
+        if (resultOfTheDraw > 9999 || resultOfTheDraw < -9999){
             placeWithNumber.classList.add('liczba-55555')
-        } else if (resultOfTheDraw > 999){
+        } else if (resultOfTheDraw > 999 || resultOfTheDraw < -999){
             placeWithNumber.classList.add('liczba-4444')
-        } else if (resultOfTheDraw > 99){
+        } else if (resultOfTheDraw > 99 || resultOfTheDraw < -99){
             placeWithNumber.classList.add('liczba-333')
+        } else if (resultOfTheDraw < -9){
+            placeWithNumber.classList.add('liczba-minus-22')
         }
 
         placeWithNumber.innerHTML = resultOfTheDraw;
