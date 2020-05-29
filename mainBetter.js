@@ -1,21 +1,14 @@
-
 const errorDetection = () => {
     const  minNumber = parseInt(document.querySelector("#min-number").value);
     const  maxNumber = parseInt(document.querySelector("#max-number").value);
     const  timeWork = Number(document.querySelector("#czas-trwania").value);
     const  timeOnScreen = Number(document.querySelector("#czas-wyświetlania").value);
 
-    const colorMotyw1 = document.querySelector("#color-1").checked;
-    const colorMotyw2 = document.querySelector("#color-2").checked;
-    const colorMotyw3 = document.querySelector("#color-3").checked;
-    const colorMotyw4 = document.querySelector("#color-4").checked;
-    const colorMotyw5 = document.querySelector("#color-5").checked;
-    const colorMotyw6 = document.querySelector("#color-6").checked;
-    const colorMotyw7 = document.querySelector("#color-7").checked;
-    const colorMotyw8 = document.querySelector("#color-8").checked;
+    const colorMotywy = document.querySelectorAll(".color-input");
+    const colorMotywyArr = Array.from(colorMotywy);
+    const haveMotyw = colorMotywyArr.find(item => item.checked === true) 
 
     const textError = document.getElementById("text-error");
-
 
     if (!minNumber && minNumber != 0 || !maxNumber && maxNumber != 0 || !timeWork && timeWork != 0 || !timeOnScreen && timeOnScreen != 0 ) {
         textError.innerHTML = ("Wszystkie pola muszą być wypełnione");
@@ -25,46 +18,42 @@ const errorDetection = () => {
         textError.innerHTML = ("Min liczba nie może być mniejsza od Max liczby");
     }else if (minNumber > 99999 || maxNumber > 99999 || minNumber < -99999 || maxNumber < -99999){
         textError.innerHTML = ("Min liczba ani max liczba nie może mieć więcej niż 5 cyfr");
-    }else if (!colorMotyw1 && !colorMotyw2 && !colorMotyw3 && !colorMotyw4 && !colorMotyw5 && !colorMotyw6 && !colorMotyw6 && !colorMotyw7 && !colorMotyw8 )  {
+    }else if (!haveMotyw)  {
         textError.innerHTML = ("Musisz zaznaczyć przynajmniej jeden motyw");
     }else {
         textError.innerHTML = ("");
         
-        startProgram(minNumber, maxNumber, timeWork, timeOnScreen, colorMotyw1, colorMotyw2, colorMotyw3, colorMotyw4, colorMotyw5, colorMotyw6, colorMotyw7, colorMotyw8);
+        startProgram(minNumber, maxNumber, timeWork, timeOnScreen, colorMotywyArr);
     }
 }
-
 const buttonStart = document.querySelector("#start");
 
-buttonStart.addEventListener('click', errorDetection)
+buttonStart.addEventListener('click', errorDetection);
 
 
-function getRandomNumber(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
-
-const startProgram = (minNumber, maxNumber, timeWork, timeOnScreen, colorMotyw1, colorMotyw2, colorMotyw3, colorMotyw4, colorMotyw5, colorMotyw6, colorMotyw7, colorMotyw8) => {
+const startProgram = (minNumber, maxNumber, timeWork, timeOnScreen, colorMotywyArr) => {
 
     buttonStart.classList.add("button-unclick")
 
     const changingNumbers = document.querySelector("#box");
     
     changingNumbers.classList.add("numberbox-start");
+    
+    const finalNumber = [];
 
-    const initialColorTable = [colorMotyw1, colorMotyw2, colorMotyw3, colorMotyw4, colorMotyw5, colorMotyw6, colorMotyw7, colorMotyw8];
-
-    const finalColorTableNumbers = [];
-
-    initialColorTable.forEach((element, i) => {
-        if (element){
-            finalColorTableNumbers.push(i + 1)
+    colorMotywyArr.forEach((element, i) => {
+        if (element.checked){
+            finalNumber.push(i + 1)
         }
     })
-    
+
     const theDraw = () => {
+
+        const getRandomNumber = (min, max) => {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
 
         const placeWithNumber = document.getElementById("liczba")
 
@@ -84,20 +73,17 @@ const startProgram = (minNumber, maxNumber, timeWork, timeOnScreen, colorMotyw1,
 
         placeWithNumber.innerHTML = resultOfTheDraw;
 
-        let randomNumber = getRandomNumber(1, finalColorTableNumbers.length);
+        const randomNumber = getRandomNumber(1, finalNumber.length);
 
-        let randomColorNumber = finalColorTableNumbers[randomNumber - 1]
+        const randomColorNumber = finalNumber[randomNumber - 1]
 
-        document.getElementById("box").classList.remove(`color1`, `color2`, `color3`, `color4`, `color5`, `color6`, `color7`, `color8`)
+        changingNumbers.classList.remove(`color1`, `color2`, `color3`, `color4`, `color5`, `color6`, `color7`, `color8`)
     
-        document.getElementById("box").classList.add(`color${randomColorNumber}`)
-
+        changingNumbers.classList.add(`color${randomColorNumber}`)
     }
 
-    theDraw();
-
-    let interval = setInterval(theDraw, timeOnScreen * 1000);
-
+    theDraw(); // To start instantly the draw and not wait 1000ms for interval
+    const interval = setInterval(theDraw, timeOnScreen * 1000);
 
     const stopInterval = () => {
         clearInterval(interval);
@@ -113,8 +99,8 @@ const startProgram = (minNumber, maxNumber, timeWork, timeOnScreen, colorMotyw1,
 
     stopButton.addEventListener('click', stopInterval)
 
-    let timeStopInterval = setTimeout(stopInterval, timeWork * 1000)
-
+    const timeStopInterval = setTimeout(stopInterval, timeWork * 1000)
 }
+
 
 
